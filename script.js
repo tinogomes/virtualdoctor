@@ -1,26 +1,3 @@
-const patientNames = [
-    "Manuela Denise Medina Solano",
-    "Miranda Balestero Bonilha",
-    "Jasmin Liane Molina Soto de Almeida",
-    "Joana Constância Espinoza de Alvim",
-    "Beto Sílvio de Gomes Filho",
-    "Eleriane Nair Flores Lozano do Amazonas",
-    "Michele Suely de Barreto",
-    "Alessandra Tatiane de Batista",
-    "Michel Mike Lutero Jr.",
-    "Elizabete Nayara de Ávila",
-    "Marlene Espinoza",
-    "Horácio Yuri Brito de Holanda",
-    "Maísa Benites Castelo",
-    "Mariana Arlete Dominato Esteves",
-    "Manuel Ricardo Valência de Vega",
-    "Luzimara Benites",
-    "Isadora Suzy Quintana Roque de Castro",
-    "Mia Luzinete de Azevedo",
-    "Israel Leonardo Feliciano Leal",
-    "Álvaro Fred Queirós de Rivera"
-];
-
 const patients = [
     { gender: "f", name: "Maria Silva", age: getRandomAge(18, 80), avatar: "https://randomuser.me/api/portraits/women/1.jpg" },
     { gender: "m", name: "João Souza", age: getRandomAge(18, 80), avatar: "https://randomuser.me/api/portraits/men/1.jpg" },
