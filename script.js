@@ -100,6 +100,20 @@ function getRandomAge(min, max) {
     return getRandomNumber((max - min + 1)) + min;
 }
 
+function showMessage(message, resetIn=0, callback) {
+    const dialog = document.getElementById('patientDialog');
+    if (!dialog) return;
+
+    dialog.textContent = message;
+
+    if (resetIn <= 0) return;
+
+    setTimeout(() => {
+        dialog.textContent = currentCase.dialog;
+        if (callback) callback();
+    }, resetIn);
+}
+
 let currentCase = null;
 let score = 0;
 let timeLeft = 300;
@@ -125,12 +139,11 @@ function startConsultation() {
     currentPatient = getPacient();
     
     const patientNameElement = document.getElementById('patientName');
-    const patientDialogElement = document.getElementById('patientDialog');
     const avatarContainer = document.getElementById('patientAvatar');
     const optionsContainer = document.getElementById('diagnosisOptions');
     
     if (patientNameElement) patientNameElement.textContent = `${currentPatient.name} (${currentPatient.age} anos)`;
-    if (patientDialogElement) patientDialogElement.textContent = currentCase.dialog;
+    showMessage(currentCase.dialog);
     
     if (avatarContainer) {
         avatarContainer.innerHTML = `<img src="${currentPatient.avatar}" alt="Paciente ${currentPatient.name}" class="patient-image">`;
@@ -167,12 +180,10 @@ function startConsultation() {
 
 function useTool(tool) {
     if (fazendoCheckup) {
-        alert('Está com muita pressa, faça as aferiçoes com calma.');
+        showMessage('Está com muita pressa, faça as aferiçoes com calma.', 3000);
         return;
     }
-    const dialogElement = document.getElementById('patientDialog');
-    if (!dialogElement) return;
-
+ 
     fazendoCheckup = true;
 
     let result = '';
@@ -193,23 +204,23 @@ function useTool(tool) {
             verificouFrequenciaCardiaca = 0;
             break;
     }
-    dialogElement.textContent = result;
-    
-    setTimeout(() => {
-        dialogElement.textContent = currentCase.dialog;
-        fazendoCheckup = false;
-    }, 3000);
+    showMessage(result, 3000, () => { fazendoCheckup = false });    
 }
 
 function makeDiagnosis(diagnosis) {
     const gender = currentPatient.gender === 'f' ? 'A' : 'O';
 
     if (fazendoCheckup) {
-        alert('Está com muita pressa para dar um diagnóstico.');
+        showMessage('Está com muita pressa para dar um diagnóstico.');
         return;
     }
     if (checkup < 3) {
-        alert('Antes de fazer um diagnóstico, verifique a temperatura, pressão arterial e ritmo cardíaco.')
+        showMessage('Antes de fazer um diagnóstico, verifique a temperatura, pressão arterial e ritmo cardíaco. Comece novamente as aferições');
+        checkup = 0
+        verificouTemperatura = 1;
+        verificouPressaoArterial = 1;
+        verificouFrequenciaCardiaca = 1;
+        fazendoCheckup = false;
         return;
     }
 
