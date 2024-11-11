@@ -1,0 +1,40 @@
+<html><head><title>Virtual Doctor - Consultas Online</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="gameContainer">
+    <div class="video-container">
+        <div class="patient" id="patientView">
+            <div class="patient-avatar" id="patientAvatar">
+                <!-- Placeholder for patient images -->
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="status-bar">
+            <span>Paciente: <span id="patientName">Carregando...</span></span>
+            <span>Tempo: <span id="timer">05:00</span></span>
+            <span>Pontuação: <span id="score">0</span></span>
+        </div>
+        
+        <div class="medical-tools">
+            <button class="tool-btn" onclick="useTool('temperature')">Medir Temperatura</button>
+            <button class="tool-btn" onclick="useTool('pressure')">Verificar Pressão</button>
+            <button class="tool-btn" onclick="useTool('stethoscope')">Usar Estetoscópio</button>
+        </div>
+
+        <div class="dialog" id="patientDialog">
+            Aguardando conexão com o paciente...
+        </div>
+
+        <div class="options" id="diagnosisOptions">
+            <!-- Options will be dynamically populated -->
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
